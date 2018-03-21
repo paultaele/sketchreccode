@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Basic Sketch Data Viewer</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="main.js"></script>
+	</head>
+	
+	<body onload="init()">
+    
+    <div id="content">
+
+      <!-- load files section -->
+      <div>
+        <form class="formlook" method="post" enctype="multipart/form-data">
+          <div>
+            <label for="file">Choose file(s) to upload</label>
+            <input type="file" id="sketchDataUploadsButton" name="sketchDataUploads" accept=".json" multiple>
+          </div>
+        </form>
+      </div>
+        
+      <!-- buttons section -->
+      <div>
+        <input type="submit" value="Back" id="backButton" class="buttonlook" onclick="backButton(drawCanvas, drawContext);">
+        <input type="submit" value="Next" id="nextButton" class="buttonlook" onclick="nextButton(drawCanvas, drawContext);">
+        <input type="text" id="targetIndex" class="textboxlook" name="indexInput" size="4" maxlength="4" value="0">
+        <input type="submit" value="Jump" id="jumpButton" class="buttonlook" onclick="jumpButton(drawCanvas, drawContext);">
+      </div>
+
+      <!-- text display section -->
+      <div>
+        <p id="indexDisplay">
+          Waiting for sketches to be loaded...
+        </p>
+      </div>
+      
+      <!-- display section -->
+      <div id="display">
+
+        <!-- canvas section -->
+        <div>
+          <canvas id="drawCanvas" class="canvaslook" width="400" height="400" ></canvas>
+        </div>
+        
+        <!-- options section-->
+        <div>
+
+          <!-- ##### SECTION: Scale ##### -->
+          <div>
+
+            <!-- [ ] Scale -->
+            <div class="optionlook">
+              <input type="checkbox" id="scaleBox" name="scaleBox" value="Scale" onclick="displayOptions();"> Scale<br>
+            </div>
+
+            <br>
+    
+            <div id="scaleOptions" style="display: none">
+              <!-- ( ) Canvas  ( ) Strokes -->
+              <br>
+              <form>
+                <input type="radio" id="scaleCanvasButton" name="scaleSelection" checked> Canvas
+                <input type="radio" id="scaleStrokesButton" name="scaleSelection"> Strokes
+              </form>
+
+              <!-- Resize Amount: [     ] -->
+              <br>
+              Resize Amount: <input type="text" id="resizeAmountBox" name="resizeAmountBox" size="4" maxlength="4" value="">
+
+              <!-- ( ) Width  ( ) Height  ( ) Long  ( ) Short -->
+              <br><br>
+              <form>
+                <input type="radio" id="scaleWidthButton" name="scaleDimension" checked> Width
+                <input type="radio" id="scaleHeightButton" name="scaleDimension"> Height
+                <input type="radio" id="scaleLongButton" name="scaleDimension"> Long
+                <input type="radio" id="scaleShortButton" name="scaleDimension"> Short
+              </form>
+
+              <!-- ( ) Proportional  ( ) Square -->
+              <br>
+              <form>
+                <input type="radio" id="scaleProportionalButton" name="scaleType" onclick="displayScaleDimensions();" checked> Proportional
+                <input type="radio" id="scaleSquareButton" name="scaleType" onclick="displayScaleDimensions();"> Square
+              </form>
+
+            </div>
+
+          </div>
+
+          <hr>
+
+          <!-- ################################################## -->
+
+          <!-- SECTION: Resample -->
+          <div>
+
+            <!-- [ ] Resample -->
+            <div class="optionlook">
+              <input type="checkbox" id="resampleBox" name="resampleBox" value="Resample" onclick="displayOptions();"> Resample
+            </div>
+
+            <br>
+    
+            <div id="resampleOptions" class="elementlook" style="display: none">
+              <!-- ( ) Count  ( ) Distance -->
+              <br>
+              <form>
+                <input type="radio" id="resampleCountButton" name="resampleSelection" checked> Count
+                <input type="radio" id="resampleDistanceButton" name="resampleSelection"> Distance
+              </form>
+
+              <!-- Resample Amount: [     ] -->
+              <br>
+              Resample Amount: <input type="text" id="resampleAmountBox" name="resampleAmountBox" size="4" maxlength="4" value="">
+
+              <!-- [ ] Display Points -->
+              <br><br>
+              <input type="checkbox" id="displayPointsBox" name="displayPointsBox"> Display Points
+
+            </div>
+
+          </div>
+          
+          <hr>
+
+          <!-- ################################################## -->
+
+          <!-- SECTION: Translate -->
+          <div>
+
+            <!-- [ ] Translate -->
+            <div class="optionlook">
+              <input type="checkbox" id="translateBox" name="translateBox" value="Translate" onclick="displayOptions();"> Translate
+            </div>
+
+            <br>
+    
+            <div id="translateOptions" class="elementlook" style="display: none">
+              <!-- [ ] Resize Canvas -->
+              <br>
+              <input type="checkbox" id="resizeCanvasButton" name="resizeCanvasButton" onclick="displayCanvasDimensions();"> Resize Canvas
+
+              <!-- Width: [    ] Height: [    ] -->
+              <br><br>
+              <form>
+                Width: <input type="text" id="canvasWidthBox" name="canvasDimensionBoxes" size="4" maxlength="4" value="" disabled="true">
+                Height: <input type="text" id="canvasHeightBox" name="canvasDimensionBoxes" size="4" maxlength="4" value="" disabled="true">
+              </form>
+              
+
+              <!-- -->
+              <!-- <br><br>
+              Translate Type: -->
+              
+              <!-- ( ) None  ( ) Center ( )  Centroid  ( ) Origin -->
+              <br>
+              <label>Sketch Translate Type:</label>
+              <form>
+                <input type="radio" id="translateSketchNoneButton" name="translateSketchButtons" onclick="displayTranslateCanvas();" checked> None
+                <input type="radio" id="translateSketchCenterButton" name="translateSketchButtons"onclick="displayTranslateCanvas();"> Center
+                <input type="radio" id="translateSketchCentroidButton" name="translateSketchButtons" onclick="displayTranslateCanvas();"> Centroid
+              </form>
+
+              <br>
+              <label>Canvas Translate Type:</label>
+              <form>
+                <input type="radio" id="translateCanvasCenterButton" name="translateCanvasButtons" disabled="true" checked> Center
+                <input type="radio" id="translateCanvasOriginButton" name="translateCanvasButtons" disabled="true"> Origin
+              </form>
+
+              <!-- <form>
+                <label>Translate Type:</label>
+                <select id="translateSelect">
+                  <option id="translateNoneOption" value="none">-----</option>
+                  <option id="translateCenterOption" value="center">Center</option>
+                  <option id="translateCentroidOption" value="centroid">Centroid</option>
+                  <option id="translateOriginOption" value="origin">Origin</option>
+                </select>
+             </form> -->
+
+            </div>
+
+          </div>
+
+          <!-- ################################################## -->
+
+          <!-- SECTION: Action Buttons -->
+          <div>
+
+            <hr>
+
+            <!-- preview and reset buttons -->
+            <div class="elementlook">
+              <input type="submit" value="Preview" id="previewButton" class="buttonlook" onclick="previewButton(drawCanvas,drawContext);">
+              <input type="submit" value="Reset" id="resetButton" class="buttonlook" onclick="resetButton(drawCanvas,drawContext);">
+            </div>
+  
+            <!-- normalize all button -->
+            <div class="elementlook">
+              <input type="submit" value="Normalize All" id="normalizeAllButton" class="buttonlook" onclick="normalizeAllButton();">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+		
+    </div>
+		
+	</body>
+</html>

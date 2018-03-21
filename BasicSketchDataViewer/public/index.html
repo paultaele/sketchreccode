@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Basic Sketch Data Viewer</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="main.js"></script>
+	</head>
+	
+	<body onload="init()">
+		
+		<div id="#content">
+
+			<!-- load files section -->
+			<div>
+				<form class="formlook" method="post" enctype="multipart/form-data">
+					<div>
+						<label for="file">Choose file(s) to upload</label>
+						<input type="file" id="sketchDataUploadsButton" name="sketchDataUploads" accept=".json" multiple>
+					</div>
+				</form>
+			</div>
+				
+			<!-- buttons section -->
+			<div>
+				<input type="submit" value="Back" id="backButton" class="buttonlook" onclick="backButton(drawCanvas, drawContext);">
+				<input type="submit" value="Next" id="nextButton" class="buttonlook" onclick="nextButton(drawCanvas, drawContext);">
+				<input type="text" id="targetIndex" class="textboxlook" name="indexInput" size="4" maxlength="4" value="0">
+				<input type="submit" value="Jump" id="jumpButton" class="buttonlook" onclick="jumpButton(drawCanvas, drawContext);">
+			</div>
+
+			<!-- text display section -->
+			<div>
+				<p id="indexDisplay">Waiting for sketches to be loaded...</p>
+			</div>
+
+			<!-- canvas section -->
+			<div>
+				<canvas id="drawCanvas" class="canvaslook" width="400" height="400" ></canvas>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

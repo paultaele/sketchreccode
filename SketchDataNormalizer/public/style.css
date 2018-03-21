@@ -1,0 +1,60 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  text-align: center;
+}
+
+#content {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto; 		/* centers on the page */
+}
+
+#display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto; 		/* centers on the page */
+}
+
+.canvaslook {
+  border:2px solid #888;
+  border-radius:4px;
+  position:relative; /* Necessary for correct mouse co-ords in Firefox */
+}
+
+.elementlook {
+  padding: 10px;
+}
+
+.buttonlook {
+  font-size: 15px;
+  padding: 10px;
+  -webkit-appearance: none;
+  background: #eee;
+  border: 1px solid #888;
+}
+
+.formlook {
+  margin-bottom: 20px;
+}
+
+.textboxlook {
+  font-size: 15px;
+  padding: 10px;
+  -webkit-appearance: none;
+  background: #eee;
+  border: 1px solid #888;
+}
+
+.textlook {
+  font-size: 15px;
+  padding: 10px;
+}
+
+.optionlook {
+  float: left;
+  margin: 0;
+  padding: 0;
+}

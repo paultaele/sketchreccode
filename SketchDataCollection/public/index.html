@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+	<meta charset="UTF-8">
+	<title>Sketch Data Collection</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="main.js"></script>
+</head>
+
+<!-- body -->
+<body onload="init()">
+
+  <!-- study setup -->
+  <div id="studySetup" class="basiclook">
+
+    <!-- study getter -->
+    <div class="elementlook">
+        Study File: <input type="file" id="studyGetter" accept=".json" >
+      </div>
+
+    <!-- image getter -->
+    <div class="elementlook">
+      Images: <input type="file" id="imageGetter" accept="image/*" multiple>
+    </div>
+
+    <!-- study loader -->
+    <div class="elementlook">
+      <input type="submit" id="studyLoader" value="Run Study" onclick="run();">
+    </div>
+
+  </div>
+
+  <!-- study header -->
+  <div id="studyHeader" style="display: none">
+    <div>
+      <h2 id="titleText">Title</h2>
+    </div>
+    <div class="headerlook">
+      <div id="previewThumbnail"></div>
+      <h2 id="labelText">Label</h2>
+      <h2 id="progressText">Progress</h2>
+    </div>
+  </div>
+
+  <!-- study viewer -->
+  <div id="studyViewer" style="display: none">
+
+    <!-- image canvas -->
+    <canvas id="canvas" class="canvaslook"></canvas>
+
+    <!-- transition buttons -->
+    <div>
+      <input type="submit" id="clearButton" class="elementlook" value="Clear" onclick="clearButton(canvas, context);">
+      <input type="submit" id="undoButton" class="elementlook" value="Undo" onclick="undoButton(canvas, context);">
+      <input type="submit" id="submitButton" class="elementlook" value="Submit" onclick="submitButton();">
+    </div>
+
+    <!-- download button -->
+    <div class="elementlook">
+      <input type="submit" id="downloadButton" value="Download" class="elementlook" style="display: none" onclick="downloadButton();">
+    </div>
+    
+  </div>
+
+</body>
+
+</html>

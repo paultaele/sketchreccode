@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<!-- head -->
+<head>
+  <meta charset="UTF-8">
+  <title>Basic Sketch Data Collection</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="main.js"></script>
+</head>
+<!-- end head -->
+
+<!-- body -->
+<body onload="init()">
+  <div id="maincontent">
+
+    <!-- save link -->
+    <div id="saveLink"></div>
+
+    <!-- dimension fields -->
+    <div id="dimensionFields" class="otherlook">
+      <!-- width field -->
+      Width: <input type="text" id="widthInput" name="widthInput" maxlength="6" size="6">
+      <!-- height field-->
+      Height: <input type="text" id="heightInput" name="heightInput" maxlength="6" size="6">
+      <!-- resize field-->
+      <input type="submit" value="Resize" onclick="resizeButton(drawCanvas, drawContext);">
+    </div>
+
+    <!-- draw canvas -->
+    <div>
+      <canvas id="drawCanvas" class="canvaslook" width="400" height="400"></canvas>
+    </div>
+
+    <!-- edit buttons -->
+    <div>
+      <input type="submit" value="Clear" class="elementlook" onclick="clearButton(drawCanvas, drawContext);">
+      <input type="submit" value="Undo" class="elementlook" onclick="undoButton(drawCanvas, drawContext);">
+      <input type="submit" value="Save" class="elementlook" onclick="saveButton(drawCanvas);">
+      <input type="submit" value="Download" class="elementlook" onclick="downloadButton();">
+    </div>
+
+    <!-- status message -->
+    <div id="statusMessage" class="otherlook"></div>
+
+    <!-- details entry -->
+    <div id="detailslook">
+      <!-- interpretation entry -->
+      <div id="interpretationEntry" class="otherlook">
+        Interpretation: <input type="text" id="interpretationInput" name="interpretationInput" value="none">
+      </div>
+
+      <!-- domains entry -->
+      <div id="domainsEntry" class="otherlook">
+        Domain(s): <input type="text" id="domainInput" name="domainInput" value="Sketch"><br/>
+        <em>(Note: Separate multiple domains by commas.)</em>
+      </div>
+    </div>
+
+    <!-- instructions -->
+    <div class="textlook">
+      <hr/>
+      <h2>Basic Sketch Data Collection Interface - Instructions</h2>
+      <h3>About</h3>
+      This interface is a basic sketch data collection interface for collecting sketches with minimalist properties.
+      The primary purpose of this interface is for usage in academic code, such as for class projects and thesis/dissertation
+      code.
+      The interface provides canvas resizing, sketch labeling, and collection downloading as your core needs. 
+      <h3>Usage</h3>
+      <ul>
+        <li><strong>Resize:</strong> Enter the width and height in pixels, and then click the resize button to automatically resize the canvas to those dimensions.</li>
+        <li><strong>Label:</strong> Enter the name of the sketch as the label.
+        <li><strong>Clear:</strong> Click the clear button to clear the entire canvas of strokes.</li>
+        <li><strong>Undo:</strong> Click the undo button to remove the most recent stroke drawn.</li>
+        <li><strong>Save:</strong> Click the save button to store the active sketch into the active collection.</li>
+        <li><strong>Download:</strong> Click the download button to access all the saved sketches as a download link and to reset the collection for any subsequent sketch data collection.</li>
+      </ul>
+      <h3>Data Structure</h3>
+      The data structure from the data collection is very minimalist, and is broken down into four levels.
+      <ul>
+        <li><strong>Sketch Collection:</strong> The top level is the sketch collection, which consists of an array of sketch objects.</li>
+        <li><strong>Sketch:</strong> The sketch object contains the following: canvasWidth, canvasHeight, interpretation, and array of stroke objects.</li>
+        <li><strong>Stroke:</strong> The stroke object contains the following: array of point objects.</li>
+        <li><strong>Point:</strong> The point object contains the following: x, y, time.</li>
+      </ul>
+    </div>
+
+  </div>
+  
+</body>
+</html>

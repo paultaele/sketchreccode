@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+  <meta charset="UTF-8">
+  <title>Sketch Data Collection Setup</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="main.js"></script>
+</head>
+<!-- end head -->
+
+<!-- body -->
+<body onload="init()">
+
+	<!-- study options -->
+	<div id="studyOptions" class="generalcontent">
+
+		<!-- load -->
+		<div class="elementlook">
+			Load Study: <input type="file" id="studyLoader" accept=".json">
+		</div>
+
+		<!-- title -->
+		<div class="elementlook">
+			Title: <input type="text" id="titleEntry" name="title" maxlength="50" size="50" value="Study">
+		</div>
+
+		<!-- count -->
+		<div class="elementlook">
+			Count: <input type="text" id="countEntry" name="count" maxlength="3" size="3" value="1">
+		</div>
+		
+		<!-- display: trace, preview, or text -->
+		<div class="elementlook">
+			<input type="radio" id="traceDisplay"
+				name="displayType" value="trace"
+				checked="true">
+			<label for="traceDisplay">trace</label>
+
+			<input type="radio" id="previewDisplay"
+				name="displayType" value="preview">
+			<label for="previewDisplay">preview</label>
+			
+			<input type="radio" id="textDisplay"
+				name="displayType" value="text"
+				onchange="changeDimensionsDisplay();">
+			<label for="textDisplay">text</label>
+		</div>
+
+		<!-- dimensions: width and height -->
+		<div id="dimensionsSetup" class="elementlook">
+			<input type="checkbox" id="dimensionsBox">
+			<label for="dimensionsBox">dimensions</label>
+			<div id="dimensionsEntry" style="display: none">
+				: width: <input type="text" id="canvasWidthEntry" maxlength="3" size="4" value="0">,
+				height: <input type="text" id="canvasHeightEntry" maxlength="3" size="4" value="0">
+			</div>
+		</div>
+
+		<!-- randomize: on or off -->
+		<div class="elementlook">
+			<input type="checkbox" id="randomizeBox">
+			<label for="randomizeBox">randomize</label>
+		</div>
+	</div>
+
+	<br><br>
+
+	<!-- session options -->
+	<div id="sessionOptions" class="generalcontent"></div>
+
+	<br><br>
+
+	<!-- edit options -->
+	<div id="editOptions">
+		<input type="submit" value="Add" class="elementlook" onclick="addSession();">
+    <input type="submit" value="Remove" class="elementlook" onclick="removeSession();">
+    <input type="submit" value="Clear" class="elementlook" onclick="clearStudy();">
+		<input type="submit" value="Save" class="elementlook" onclick="saveStudy();">
+	</div>
+
+</body>
+
+
+</html>

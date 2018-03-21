@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- head -->
+  <head>
+    <meta charset="UTF-8">
+    <title>Sketch Data Collection Merge/Split</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+
+  <!-- body -->
+  <body onload="init()">
+    <!-- page title: labels the web page -->
+    <div id="pageTitle" class="generalcontent">
+      <h1>Sketch Data Collection Merge/Split</h1>
+    </div>
+
+    <!-- data loader: a file input button that takes sketch JSON files -->
+		<div class="elementlook">
+			Load Sketches: <input type="file" id="sketchLoader" accept=".json" multiple>
+		</div>
+
+    <!-- sketch selectors: left and right listboxes for listing sketch labels, and middle
+    buttons for moving sketch labels between list boxes and downloading the selected
+    labels' sketches -->
+    <div id="sketchSelectors" class="selectlook">
+
+      <!-- left selections: the listbox of the loaded sketch labels -->
+      <div class="elementlook">
+        <p id="leftCount">#: 0</p>
+        <select id="leftSelections" style="width:300px;" size="20" multiple="multiple"></select>
+      </div>
+
+      <!-- middle buttons: move buttons for moving sketch labels between listboxes, and 
+      a download button for downloading the selected labels' sketches -->
+      <div class="interactionlook">
+
+        <!-- move left button -->
+        <div><input type="button" class="buttonlook" value="Move →" onclick="move(true);"></div>
+        
+        <!-- move right button -->
+        <div><input type="button" class="buttonlook" value="← Move" onclick="move(false);"></div>
+        
+        <!-- download button -->
+        <div><input type="button" class="buttonlook" value="Download" onclick="downloadData();"></div>
+      </div>
+
+      <!-- right selections: the listbox of the sketch labels to save -->
+      <div>
+        <p id="rightCount">#: 0</p>
+        <select id="rightSelections" style="width:300px;" size="20" multiple="multiple"></select>          
+      </div>
+
+    </div>
+
+    <!-- selection sorters -->
+    <div id="selectionSorters" class="selectlook">
+
+      <!-- sort button for left selections -->
+      <div><input type="button" id="leftSorter" value="Sort" onclick="sortSelections(true);"></div>
+
+      <!-- empty column -->
+      <div></div>
+
+      <!-- sort buttojn for right selections -->
+      <div><input type="button" id="rightSorter" value="Sort" onclick="sortSelections(false);"></div>
+    </div>
+
+    <hr>
+
+    <!-- instructions -->
+    <div id="instructionsSection" class="instructionslook">
+      <h2><strong>Instructions</strong></h2>
+      <h3>About</h3>
+      <p>
+      The purpose of this code is to work with multiple sketch data files, and merge or split the
+      sketches into new files.
+      </p>
+
+      <h3>Guide</h3>
+      <ol>
+        <li>
+          <strong>Loading Data:</strong> Use the "Choose Files" button at the top to select one
+          or more sketch data files. This will load the labels of the sketches from each of those
+          files on the left side.  
+        </li>
+        <li>
+          <strong>Moving Data:</strong> Use the "Move" buttons in the middle to transfer the
+          labels to the left and right listboxes.
+        </li>
+        <li>
+          <strong>Sorting Data:</strong> Use the "Sort" buttons to sort the labels in the target
+          listbox in alphabetical order.
+        </li>
+        <li>
+          <strong>Downloading Data:</strong> Use the "Download" to download the labels' sketches
+          in the right listbox into a new data file. 
+        </li>
+      </ol>
+    </div>
+
+  </body>
+</html>

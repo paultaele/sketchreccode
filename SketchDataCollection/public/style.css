@@ -1,0 +1,23 @@
+body {
+  text-align: center;
+font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.basiclook {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto; 		/* centers on the page */
+}
+.headerlook{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto; 		/* centers on the page */
+}
+.canvaslook {
+  border: 2px solid #888;
+  border-radius: 4px;
+  position: relative;
+}
+.elementlook {
+  padding: 10px;
+  margin: 0px 20px 0px 20px;
+}
